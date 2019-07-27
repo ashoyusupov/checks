@@ -23,11 +23,18 @@ CREATE TABLE IF NOT EXISTS `chek_otpravki` (
   `data_otpravki` date DEFAULT NULL,
   `nomer_otslejivanie` int(11) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `filename` varchar(255) DEFAULT NULL,
+  `jurnal` int(11) DEFAULT NULL,
+  `podpischik` int(11) DEFAULT NULL,
+  `podpiska` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nomer_cheka` (`nomer_cheka`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Дамп данных таблицы check.chek_otpravki: ~0 rows (приблизительно)
+-- Дамп данных таблицы check.chek_otpravki: ~1 rows (приблизительно)
 /*!40000 ALTER TABLE `chek_otpravki` DISABLE KEYS */;
+INSERT INTO `chek_otpravki` (`id`, `nomer_cheka`, `data_otpravki`, `nomer_otslejivanie`, `status`, `filename`, `jurnal`, `podpischik`, `podpiska`) VALUES
+	(3, 12, '2019-07-05', 132, 'ошибочный', 'potreb-42.jpg', 1, 2, 1);
 /*!40000 ALTER TABLE `chek_otpravki` ENABLE KEYS */;
 
 -- Дамп структуры для таблица check.jurnal
@@ -37,10 +44,12 @@ CREATE TABLE IF NOT EXISTS `jurnal` (
   `nomer_jurnala` int(11) DEFAULT NULL,
   `data_vixoda` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Дамп данных таблицы check.jurnal: ~0 rows (приблизительно)
+-- Дамп данных таблицы check.jurnal: ~1 rows (приблизительно)
 /*!40000 ALTER TABLE `jurnal` DISABLE KEYS */;
+INSERT INTO `jurnal` (`id`, `nazvanie`, `nomer_jurnala`, `data_vixoda`) VALUES
+	(1, 'Avto', 22, '2019-07-01');
 /*!40000 ALTER TABLE `jurnal` ENABLE KEYS */;
 
 -- Дамп структуры для таблица check.podpischik
@@ -51,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `podpischik` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы check.podpischik: ~0 rows (приблизительно)
+-- Дамп данных таблицы check.podpischik: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `podpischik` DISABLE KEYS */;
 INSERT INTO `podpischik` (`id`, `fio`, `adres`) VALUES
 	(1, 'Adreev Sergey Dmitrivich', 'Kazakhstan Astan'),
@@ -67,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `podpiska` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Дамп данных таблицы check.podpiska: ~0 rows (приблизительно)
+-- Дамп данных таблицы check.podpiska: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `podpiska` DISABLE KEYS */;
 INSERT INTO `podpiska` (`id`, `data_nachala`, `srok`) VALUES
 	(1, '2019-07-01', 5),
